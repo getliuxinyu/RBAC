@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.woniu.dao.RoleDao">
+	<sql id="base_col_list">
+  	roleid,rolename
+  </sql>
+  
+  
+
+   
+   
+    <select id="selectByPage" parameterType="PageInfo" resultType="role">
+		select
+		<include refid="base_col_list"></include>
+		from role
+		<where>
+			<if test="searchVal!=null">
+				rolename like concat('%',#{searchVal},'%') 
+			</if>	 
+		</where>
+		order by roleid desc
+		limit ${(currentPage-1)*pageSize},${pageSize} 
+  </select>
+  
+  <select id="countAll" parameterType="PageInfo" resultType="int">
+  		select count(*) from role
+  		<where>
+			<if test="searchVal!=null">
+				rolename like concat('%',#{searchVal},'%') 
+			</if>	 
+		</where>
+  </select>
+  
+  <select id="findUnassignedRole" parameterType="int" resultType="role">
+  		select 
+  			<include refid="base_col_list"></include>
+  		from role 
+  		<where>
+  			roleid  not in(
+  				select roleid from u_r 
+  				<where>
+  					user_id=#{user_id}
+  				</where>
+  			)
+  		</where>
+  </select>
+    
+    
+      <select id="findAssignedRole" parameterType="int" resultType="role">
+  		select 
+  			<include refid="base_col_list"></include>
+  		from role 
+  		<where>
+  			roleid  in(
+  				select roleid from u_r 
+  				<where>
+  					user_id=#{user_id}
+  				</where>
+  			)
+  		</where>
+  </select>
+  
+  <select id="findOne" parameterType="int" resultType="role">
+  	select 
+  	<include refid="base_col_list"></include>
+  	from role
+  	<where>
+  		roleid=#{roleid}
+  	</where>
+  </select>
+  
+  
+  <insert id="save" parameterType="role">
+  		insert into role
+  		values(#{roleid},#{rolename})
+  </insert>
+  
+  <insert id="assignPermission">
+  	insert into r_p values
+  	<foreach collection="pids" item="pid"  separator=",">
+  		(#{rpid},#{rid},#{pid})
+  	</foreach>
+  </insert>
+  
+  <update id="update" parameterType="role">
+  	update role
+  	<set>
+  		<if test="rolename!=null">
+  			rolename=#{rolename}
+  		</if>
+  	</set>
+  	<where>
+  		roleid=#{roleid}
+  	</where>
+  </update>
+  
+  <delete id="delete" parameterType="int">
+  	delete from role
+  	<where>
+  		roleid=#{rid}
+  	</where> 
+  </delete>
+  
+  
+  <delete id="deleteRoles">
+  	delete from role
+  	<where>
+  		roleid in 
+  		<foreach collection="rids" item="rid" open="(" close=")" separator=",">
+  			#{rid}
+  		</foreach>
+  	</where> 
+  </delete>
+</mapper>

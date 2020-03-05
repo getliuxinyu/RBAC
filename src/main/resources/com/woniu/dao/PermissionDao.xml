@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.woniu.dao.PermissionDao">
+	<sql id="base_col_list">
+  	pid,name,parentid,url
+  </sql>
+  <select id="findAll" resultType="permission">
+  	select
+  	<include refid="base_col_list"></include>
+  	from permission
+  </select>
+  <select id="findRoot" resultType="permission">
+  	select
+  	<include refid="base_col_list"></include>
+  	from permission
+  	where parentid is null
+  </select>
+  <select id="selectByParentid" parameterType="int" resultType="permission">
+  	select
+  	<include refid="base_col_list"></include>
+  	from permission
+  	where parentid = #{pid}
+  </select>
+  
+	<select id="findOne" parameterType="int" resultType="Permission">
+		select 
+		<include refid="base_col_list"></include>
+		from permission
+		<where>
+			pid=#{pid}
+		</where>	
+	</select>	
+	
+	<select id="findUnassignedPermission" parameterType="int" resultType="Permission">
+		select 
+		<include refid="base_col_list"></include>
+		from permission
+		<where>
+			pid not in(
+				select pid from r_p
+				<where>
+					roleid=#{rid}
+				</where>
+			)
+		</where>
+	</select>
+	
+   <insert id="save" parameterType="Permission">
+   	insert into permission values(#{pid},#{name},#{parentid},#{url})
+   </insert>
+   
+   <update id="update" parameterType="Permission">
+   	update permission
+   		<set>
+   			<if test="name!=null">
+   				name=#{name},
+   			</if>
+   			<if test="parentid!=null">
+   				parentid=#{parentid},
+   			</if>
+   			<if test="url!=null">
+   				url=#{url},
+   			</if>
+   		</set>
+   		<where>
+   			pid=#{pid}
+   		</where>
+   </update>
+   
+   <delete id="delete" parameterType="int">
+   	delete from permission
+   	<where>
+   		pid=#{pid}
+   	</where>
+   </delete>
+</mapper>
