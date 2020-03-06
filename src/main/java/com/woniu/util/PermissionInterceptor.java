@@ -46,7 +46,6 @@ public class PermissionInterceptor implements HandlerInterceptor {
 			//
 			HttpSession session = request.getSession();
 			User loginUser = (User) session.getAttribute("loginUser");
-			//判断请求路径是否是该用户的权限
 			List<Permission> userPermission = userService.selectPermissionByUser(loginUser);
 			
 			for (Permission permission : userPermission) {

@@ -20,14 +20,7 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 	
-	<mvc:resources location="/bootstrap/" mapping="/bootstrap/**" />
-	<mvc:resources location="/css/" mapping="/css/**" />
-	<mvc:resources location="/fonts/" mapping="/fonts/**" />
-	<mvc:resources location="/img/" mapping="/img/**" />
-	<mvc:resources location="/jquery/" mapping="/jquery/**" />
-	<mvc:resources location="/layer/" mapping="/layer/**" />
-	<mvc:resources location="/script/" mapping="/script/**" />
-	<mvc:resources location="/ztree/" mapping="/ztree/**" />
+	
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -37,7 +30,14 @@
 			<mvc:exclude-mapping path="/login"/>
 			<mvc:exclude-mapping path="/loginAjax"/>
 			<mvc:exclude-mapping path="/error"/>
-			<mvc:exclude-mapping path="/bootstrap"/>
+			<mvc:exclude-mapping path="/loginout"/>
+			<mvc:exclude-mapping path="/script/**"/>
+			<mvc:exclude-mapping path="/bootstrap/**"/>
+			<mvc:exclude-mapping path="/css/**"/>
+			<mvc:exclude-mapping path="/jquery/**"/>
+			<mvc:exclude-mapping path="/layer/**"/>
+			<mvc:exclude-mapping path="/ztree/**"/>
+			<mvc:exclude-mapping path="/fonts/**"/>
 			<!-- 拦截器实现类的位置 -->
 			<bean class="com.woniu.util.LoginInterceptor"></bean>
 		</mvc:interceptor>
@@ -48,6 +48,14 @@
 			<mvc:exclude-mapping path="/login"/>
 			<mvc:exclude-mapping path="/loginAjax"/>
 			<mvc:exclude-mapping path="/error"/>
+			<mvc:exclude-mapping path="/loginout"/>
+			<mvc:exclude-mapping path="/script/**"/>
+			<mvc:exclude-mapping path="/bootstrap/**"/>
+			<mvc:exclude-mapping path="/css/**"/>
+			<mvc:exclude-mapping path="/jquery/**"/>
+			<mvc:exclude-mapping path="/layer/**"/>
+			<mvc:exclude-mapping path="/ztree/**"/>
+			<mvc:exclude-mapping path="/fonts/**"/>
 			<bean class="com.woniu.util.PermissionInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="${AppPath }/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${AppPath }/css/font-awesome.min.css">
 	<link rel="stylesheet" href="${AppPath }/css/main.css">
-	<link rel="stylesheet" href="${AppPath }/css/doc.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/css/doc.min.css">
 	<style>
 	.tree li {
         list-style-type: none;
