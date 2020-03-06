@@ -111,4 +111,11 @@
   		</foreach>
   	</where> 
   </delete>
+  
+  <delete id="deleteAssignedPermission" parameterType="int">
+  	delete from r_p 
+  	<where>
+  		roleid=#{rid}
+  	</where>
+  </delete>
 </mapper>

@@ -59,26 +59,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
 			<div class="tree">
-				<ul style="padding-left:0px;" class="list-group">
-					<li class="list-group-item tree-closed" >
-						<a href="main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a> 
-					</li>
-					<li class="list-group-item">
-						<span><i class="glyphicon glyphicon glyphicon-tasks"></i> 权限管理 <span class="badge" style="float:right">3</span></span> 
-						<ul style="margin-top:10px;">
-							<li style="height:30px;">
-								<a href="user.html" style="color:red;"><i class="glyphicon glyphicon-user"></i> 用户维护</a> 
-							</li>
-							<li style="height:30px;">
-								<a href="role.html"><i class="glyphicon glyphicon-certificate"></i> 角色维护</a> 
-							</li>
-							<li style="height:30px;">
-								<a href="permission.html"><i class="glyphicon glyphicon-lock"></i> 许可维护</a> 
-							</li>
-						</ul>
-					</li>
-					
-				</ul>
+				<%@ include file="../menu.jsp" %>
 			</div>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -93,15 +74,15 @@
 				<form role="form" id="userAddForm">
 				  <div class="form-group">
 					<label for="exampleInputPassword1">登陆账号</label>
-					<input type="text" class="form-control" id="exampleInputPassword1" id="uaccount" name="user_account" placeholder="请输入登陆账号">
+					<input type="text" class="form-control"  id="uaccount" name="user_account" placeholder="请输入登陆账号">
 				  </div>
 				  <div class="form-group">
 					<label for="exampleInputPassword1">用户名称</label>
-					<input type="text" class="form-control" id="exampleInputPassword1" id="uname" name="user_name" placeholder="请输入用户名称">
+					<input type="text" class="form-control"  id="uname" name="user_name" placeholder="请输入用户名称">
 				  </div>
 				  <div class="form-group">
 					<label for="exampleInputEmail1">邮箱地址</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" id="uemail" name="user_email" placeholder="请输入邮箱地址">
+					<input type="email" class="form-control"  id="uemail" name="user_email" placeholder="请输入邮箱地址">
 					<p class="help-block label label-warning">请输入合法的邮箱地址, 格式为： xxxx@xxxx.com</p>
 				  </div>
 				  <button type="button" id="btnSave" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> 新增</button>

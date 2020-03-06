@@ -51,6 +51,17 @@
 		</where> 
   </select>
   
+  <select id="selectPermissionByUser" parameterType="user" resultType="Permission">
+  	SELECT * FROM permission 
+		WHERE pid IN (
+	SELECT pid FROM r_p 
+		WHERE roleid in (
+	SELECT roleid FROM u_r
+		WHERE user_id=#{user_id}
+		)
+	) 
+  </select> 
+  
   <insert id="save" parameterType="user">
   		insert into user
   		values(#{user_id},#{user_name},#{user_pwd},#{user_account},#{user_email},#{user_date})

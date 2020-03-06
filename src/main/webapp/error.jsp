@@ -39,7 +39,7 @@
             <li style="padding-top:8px;">
 				<div class="btn-group">
 				  <button type="button" class="btn btn-default btn-success dropdown-toggle" data-toggle="dropdown">
-					<i class="glyphicon glyphicon-user"></i> ${loginUser.user_name } <span class="caret"></span>
+					<i class="glyphicon glyphicon-user"></i> <span class="caret"></span>
 				  </button>
 					  <ul class="dropdown-menu" role="menu">
 						<li><a href="#"><i class="glyphicon glyphicon-cog"></i> 个人设置</a></li>
@@ -72,26 +72,7 @@
           <h1 class="page-header">控制面板</h1>
 
           <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">woniuxy</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">woniuxy</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">woniuxy</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">woniuxy</span>
-            </div>
+           	 <h1 style="color: red" >${param.message=="1"?"当前用户没有访问权限！":"当前请求信息是错误的！" }</h1>
           </div>
         </div>
       </div>

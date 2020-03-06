@@ -61,29 +61,27 @@
         	layer.msg("密码不能为空！",{time:1000,icon:0,shfit:5},function(){});
 			return;
         }
-       $("#loginForm").submit();
+      
+	    //ajax
+	  	 $.ajax({
+	    	url:"loginAjax",
+	    	type:"post",
+	    	data:$("#loginForm").serialize(),
+	    	error:function(){
+	    		alert("登陆失败");
+	    	},
+	    	success:function(data){
+	    		if(data.flag){
+	    			//所有页面跳转都交由controller来控制
+	    			window.location.href="main";
+	    		}else{
+	    			layer.msg("用户名密码错误！",{time:1000,icon:1,shfit:5},function(){});
+	    		}
+	    	}
+	    	
+	    });
     }
     
-    //ajax
-  	 $.ajax({
-    	cache:false,
-    	url:"loginAjax",
-    	type:"post",
-    	data:$("loginForm").serialize(),
-    	async:false,
-    	error:function(){
-    		alert("登陆失败");
-    	},
-    	success:function(data){
-    		if(data.flag){
-    			//所有页面跳转都交由controller来控制
-    			window.location.href="main";
-    		}else{
-    			layer.msg("用户名密码错误！",{time:1000,icon:1,shfit:5},function(){});
-    		}
-    	}
-    	
-    });
     
     </script>
   </body>

@@ -40,6 +40,11 @@ public class RoleController {
 		return "role/roleUpd";
 	}
 	
+	@RequestMapping("assignPermission")
+	public String assignPer(Integer rid) {
+		return "role/assignPermission";
+	}
+	
 	@RequestMapping("save")
 	public String save() {
 		return "role/roleAdd";
@@ -49,16 +54,18 @@ public class RoleController {
 	@ResponseBody
 	public Object assignPermission(Integer rid) {
 		List<Permission> list = permissionService.findAll();
+		//找的已分配权限的pid集合
 		List<Integer> assignPermissionIds=permissionService.assignedPermission(rid);
 		List<Permission> zTree = new ArrayList<Permission>();
 		Map<Integer, Permission> map = new HashMap<Integer, Permission>();
 		for (Permission permission : list) {
-			//找到已经分配的许可将checked属性设置为true
+			//找到已经分配的许可将checked属性设置为true，ztree：当checked属性为true，复选框选中。
 			if(assignPermissionIds.contains(permission.getPid())) {
 				permission.setChecked(true);
 			}else{
 				permission.setChecked(false);
 			}
+			permission.setOpen(true);
 			map.put(permission.getPid(), permission);
 		}
 		for (Permission permission : list) {

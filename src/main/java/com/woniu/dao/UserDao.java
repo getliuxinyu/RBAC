@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.woniu.pojo.PageInfo;
+import com.woniu.pojo.Permission;
 import com.woniu.pojo.User;
 
 public interface UserDao {
@@ -29,5 +30,7 @@ public interface UserDao {
 	void assignRole(Map<String, Object> map);
 
 	void cancelRole(Map<String, Object> map);
+
+	List<Permission> selectPermissionByUser(User loginUser);
 
 }

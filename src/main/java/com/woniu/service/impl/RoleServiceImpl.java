@@ -86,12 +86,15 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public List<Role> findUnassignedRole(Integer user_id) {
 		// TODO Auto-generated method stub
+		
 		return roleDao.findUnassignedRole(user_id);
 	}
 
 	@Override
 	public void assignPermission(Map<String, Object> map) {
 		// TODO Auto-generated method stub
+		//分配权限同时删除原有权限
+		roleDao.deleteAssignedPermission(map.get("rid"));
 		roleDao.assignPermission(map);
 	}
 

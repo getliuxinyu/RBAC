@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.woniu.dao.UserDao;
 import com.woniu.pojo.PageInfo;
+import com.woniu.pojo.Permission;
 import com.woniu.pojo.User;
 import com.woniu.service.UserService;
 @Service
@@ -87,5 +88,11 @@ public class UserServiceImpl implements UserService {
 	public void cancelRole(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		userDao.cancelRole(map);
+	}
+
+	@Override
+	public List<Permission> selectPermissionByUser(User loginUser) {
+		// TODO Auto-generated method stub
+		return userDao.selectPermissionByUser(loginUser);
 	}
 }
