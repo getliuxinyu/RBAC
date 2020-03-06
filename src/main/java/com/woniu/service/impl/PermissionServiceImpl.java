@@ -60,9 +60,9 @@ public class PermissionServiceImpl implements PermissionService {
 	}
 
 	@Override
-	public List<Permission> findUnassignedPermission(Integer rid) {
+	public List<Integer> assignedPermission(Integer rid) {
 		// TODO Auto-generated method stub
-		return permissionDao.findUnassignedPermission(rid);
+		return permissionDao.assignedPermission(rid);
 	}
 	
 }

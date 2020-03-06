@@ -14,6 +14,7 @@ public class Permission {
 	private String name;
 	private Integer parentid;
 	private Boolean open;
+	private Boolean checked;
 	private List<Permission> children = new ArrayList<Permission>();
 	private String url;
 }

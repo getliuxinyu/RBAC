@@ -84,7 +84,7 @@ public class PermissionController {
 	
 	@RequestMapping("loadData")
 	@ResponseBody
-	public Object loadData() {
+	public Object loadData(Integer rid) {
 		
 		
 		Permission root = null;
@@ -136,6 +136,8 @@ public class PermissionController {
 		return zTree;
 
 	}
+	
+	
 	
 	
 	

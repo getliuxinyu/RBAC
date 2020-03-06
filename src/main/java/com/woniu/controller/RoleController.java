@@ -45,12 +45,20 @@ public class RoleController {
 		return "role/roleAdd";
 	}
 	
-	@RequestMapping("assignPermission")
-	public String assignPermission(Integer rid,Model model) {
-		List<Permission> list=permissionService.findUnassignedPermission(rid);
+	@RequestMapping("loadData")
+	@ResponseBody
+	public Object assignPermission(Integer rid) {
+		List<Permission> list = permissionService.findAll();
+		List<Integer> assignPermissionIds=permissionService.assignedPermission(rid);
 		List<Permission> zTree = new ArrayList<Permission>();
 		Map<Integer, Permission> map = new HashMap<Integer, Permission>();
 		for (Permission permission : list) {
+			//找到已经分配的许可将checked属性设置为true
+			if(assignPermissionIds.contains(permission.getPid())) {
+				permission.setChecked(true);
+			}else{
+				permission.setChecked(false);
+			}
 			map.put(permission.getPid(), permission);
 		}
 		for (Permission permission : list) {
@@ -61,9 +69,8 @@ public class RoleController {
 				p.getChildren().add(permission);
 			}
 		}
-		model.addAttribute("rid", rid);
-		model.addAttribute("zTree",zTree);
-		return "role/assignPermission";
+		
+		return zTree;
 	}
 	
 	@RequestMapping("roleByPage")

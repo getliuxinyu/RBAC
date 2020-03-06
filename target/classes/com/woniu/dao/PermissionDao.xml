@@ -31,17 +31,10 @@
 		</where>	
 	</select>	
 	
-	<select id="findUnassignedPermission" parameterType="int" resultType="Permission">
-		select 
-		<include refid="base_col_list"></include>
-		from permission
+	<select id="assignedPermission" parameterType="int" resultType="int">
+		select pid from r_p
 		<where>
-			pid not in(
-				select pid from r_p
-				<where>
-					roleid=#{rid}
-				</where>
-			)
+			roleid=#{rid}
 		</where>
 	</select>
 	

@@ -20,6 +20,6 @@ public interface PermissionDao {
 
 	void delete(Integer pid);
 
-	List<Permission> findUnassignedPermission(Integer rid);
+	List<Integer> assignedPermission(Integer rid);
 
 }

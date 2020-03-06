@@ -138,7 +138,7 @@
             var setting = {
         			async: {
         				enable: true,
-        				url:"${AppPath }/permission/loadData",
+        				url:"${AppPath }/role/loadData?rid=${param.rid}",
         				autoParam : [ "id", "name=n", "level=lv" ]
         				
         			},
